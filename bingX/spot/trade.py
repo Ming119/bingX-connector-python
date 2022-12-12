@@ -76,7 +76,7 @@ def open_orders(self,
 
 def order_history(self,
     symbol:     str,
-    orderId:    int,
+    orderId:    int = None,
     startTime:  int = None,
     endTime:    int = None,
     pageIndex:  int = None,
@@ -84,11 +84,11 @@ def order_history(self,
     recvWindow: int = None
 ) -> dict:
     ''' Query Order History
-    GET /openApi/spot/v1/trade/allOrders
+    GET /openApi/spot/v1/trade/historyOrders
 
     https://bingx-api.github.io/docs/spot/trade-interface.html#query-order-history
     '''
-    return self.get('/openApi/spot/v1/trade/allOrders', params={
+    return self.get('/openApi/spot/v1/trade/historyOrders', params={
         'symbol':     symbol,
         'orderId':    orderId,
         'startTime':  startTime,
