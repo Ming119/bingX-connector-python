@@ -1,0 +1,1 @@
+from bingX.spot.Spot import Spot
