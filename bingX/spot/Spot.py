@@ -1,3 +1,7 @@
+'''
+bingX.spot.Spot
+'''
+
 from  bingX import API
 
 class Spot(API):
@@ -13,80 +17,34 @@ class Spot(API):
             api_type   = 'spot'
         )
     
-    def place_order(self,
-        symbol:        str,
-        side:          str,
-        type:          str,
-        timeInForce:   str   = None,
-        quantity:      float = None,
-        quoteOrderQty: float = None,
-        price:         float = None,
-        recvWindow:    int   = None
-    ) -> dict:
-        return self.post('/openApi/spot/v1/trade/order', params={
-            'symbol':        symbol,
-            'side':          side,  
-            'type':          type,
-            'timeInForce':   timeInForce,
-            'quantity':      quantity,
-            'quoteOrderQty': quoteOrderQty,
-            'price':         price,
-            'recvWindow':    recvWindow
-        })
-    
-    def cancel_order(self,
-        symbol:     str,
-        orderId:    int,
-        recvWindow: int = None
-    ) -> dict:
-        return self.post('/openApi/spot/v1/trade/cancel', params={
-            'symbol':     symbol,
-            'orderId':    orderId,
-            'recvWindow': recvWindow
-        })
-    
-    def order(self,
-        symbol:     str,
-        orderId:    int,
-        recvWindow: int = None
-    ) -> dict:
-        return self.get('/openApi/spot/v1/trade/query', params={
-            'symbol':     symbol,
-            'orderId':    orderId,
-            'recvWindow': recvWindow
-        })
-    
-    def open_orders(self,   
-        symbol:     str,
-        recvWindow: int = None
-    ) -> dict:
-        return self.get('/openApi/spot/v1/trade/openOrders', params={
-            'symbol':     symbol,
-            'recvWindow': recvWindow
-        })
-    
-    def order_history(self,
-        symbol:     str,
-        orderId:    int,
-        startTime:  int = None,
-        endTime:    int = None,
-        pageIndex:  int = None,
-        pageSize:   int = None,
-        recvWindow: int = None
-    ) -> dict:
-        return self.get('/openApi/spot/v1/trade/allOrders', params={
-            'symbol':     symbol,
-            'orderId':    orderId,
-            'startTime':  startTime,
-            'endTime':    endTime,
-            'pageIndex':  pageIndex,
-            'pageSize':   pageSize,
-            'recvWindow': recvWindow
-        })
-    
-    def balance(self,
-        recvWindow: int = None
-    ) -> dict:
-        return self.get('/openApi/spot/v1/account/balance', params={
-            'recvWindow': recvWindow
-        })
+    # ========== TRADE INTERFACE ==========
+    from bingX.spot.trade import (
+        place_order,
+        cancel_order,
+        order,
+        open_orders,
+        order_history,
+        balance,
+    )
+
+    # ========== MARKET INTERFACE ==========
+    from bingX.spot.market import (
+        symbols,
+        trades,
+        depth,
+    )
+
+    # ========== USER UNIVERSAL TRANSFER INTERFACE ==========
+    from bingX.spot.transfer import (
+        transfer,
+        transfer_history,
+        deposit_history,
+        withdraw_history,
+    )
+
+    # ========== OTHER INTERFACE ==========
+    from bingX.spot.other import (
+        generate_listen_key,
+        extend_listen_key,
+        delete_listen_key,
+    )

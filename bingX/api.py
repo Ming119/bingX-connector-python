@@ -43,6 +43,8 @@ class API(object):
             r = requests.get(url, headers=headers or self.headers)
         elif method == 'POST':
             r = requests.post(url, headers=headers or self.headers)
+        elif method == 'PUT':
+            r = requests.put(url, headers=headers or self.headers)
         elif method == 'DELETE':
             r = requests.delete(url, headers=headers or self.headers)
         else:
@@ -55,3 +57,8 @@ class API(object):
     def post(self, path, params=None):
         return self._request('POST', path, params=params)
 
+    def put(self, path, params=None):
+        return self._request('PUT', path, params=params)
+
+    def delete(self, path, params=None):
+        return self._request('DELETE', path, params=params)
