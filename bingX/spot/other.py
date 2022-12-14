@@ -12,7 +12,7 @@ def generate_listen_key(self):
     '''
     return self.post('/openApi/user/auth/userDataStream')
 
-def extend_listen_key(self):
+def extend_listen_key(self, listenKey):
     ''' Extend Listen Key Validity Period
     The validity period is extended to 60 minutes after this call, and it is
     recommended to send a ping every 30 minutes.
@@ -21,9 +21,9 @@ def extend_listen_key(self):
 
     https://bingx-api.github.io/docs/spot/other-interface.html#extend-listen-key-validity-period
     '''
-    return self.put('/openApi/user/auth/userDataStream')
+    return self.put('/openApi/user/auth/userDataStream', params={'listenKey': listenKey})
 
-def delete_listen_key(self):
+def delete_listen_key(self, listenKey):
     ''' Delete Listen Key
     delete User data flow.
 
@@ -31,4 +31,4 @@ def delete_listen_key(self):
 
     https://bingx-api.github.io/docs/spot/other-interface.html#delete-listen-key
     '''
-    return self.delete('/openApi/user/auth/userDataStream')
+    return self.delete('/openApi/user/auth/userDataStream', params={'listenKey': listenKey})
