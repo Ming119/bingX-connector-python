@@ -17,7 +17,7 @@ class Standard(API):
             api_type   = "standard"
         )
 
-    # ========== TRADE INTERFACE ==========
+    # ========== STANDARD CONTRACT INTERFACE ==========
     from bingX.standard.trade import (
         position,
         order_history,
