@@ -1,3 +1,7 @@
+'''
+bingX.standard.Standard
+'''
+
 from bingX import API
 
 class Standard(API):
@@ -12,21 +16,9 @@ class Standard(API):
             base_url   = base_url or "https://open-api.bingx.com",
             api_type   = "standard"
         )
-    
-    def position(self) -> dict:
-        return self.get("/openApi/contract/v1/allPosition")
-    
-    def order_history(self,
-        symbol:    str,
-        orderId:   int = None,
-        startTime: int = None,
-        endTime:   int = None,
-        limit:     int = None
-    ) -> dict:
-        return self.get("/openApi/contract/v1/allOrders", params={
-            "symbol":    symbol,
-            "orderId":   orderId,
-            "startTime": startTime,
-            "endTime":   endTime,
-            "limit":     limit
-        })
+
+    # ========== STANDARD CONTRACT INTERFACE ==========
+    from bingX.standard.trade import (
+        position,
+        order_history,
+    )
