@@ -6,7 +6,7 @@ def transfer(self,
     type:       str,
     asset:      str   = None,
     amount:     float = None,
-    recvWindow: int   = None
+    recvWindow: int   = None,
 ) -> dict:
     ''' User Universal Transfer
     POST /openApi/api/v3/asset/transfer
@@ -17,7 +17,7 @@ def transfer(self,
         'type':       type,
         'asset':      asset,
         'amount':     amount,
-        'recvWindow': recvWindow
+        'recvWindow': recvWindow,
     })
 
 def transfer_history(self,
@@ -26,7 +26,7 @@ def transfer_history(self,
     endTime:    int   = None,
     current:    int   = None,
     size:       int   = None,
-    recvWindow: int   = None
+    recvWindow: int   = None,
 ) -> dict:
     ''' Query User Universal Transfer History (USER_DATA)
     GET /openApi/api/v3/asset/transfer
@@ -39,7 +39,7 @@ def transfer_history(self,
         'endTime':    endTime,
         'current':    current,
         'size':       size,
-        'recvWindow': recvWindow
+        'recvWindow': recvWindow,
     })
 
 def deposit_history(self,
@@ -49,12 +49,12 @@ def deposit_history(self,
     endTime:    int = None,
     offset:     int = None,
     limit:      int = None,
-    recvWindow: int = None
+    recvWindow: int = None,
 ) -> dict:
-    ''' Query Deposit History (USER_DATA)
+    ''' Deposit History(supporting network)
     GET /openApi/api/v3/capital/deposit/hisrec
 
-    https://bingx-api.github.io/docs/spot/user-interface.html#query-deposit-history-user-data
+    https://bingx-api.github.io/docs/spot/user-interface.html#deposit-history-supporting-network
     '''
     return self.get('/openApi/api/v3/capital/deposit/hisrec', params={
         'coin':       coin,
@@ -63,7 +63,7 @@ def deposit_history(self,
         'endTime':    endTime,
         'offset':     offset,
         'limit':      limit,
-        'recvWindow': recvWindow
+        'recvWindow': recvWindow,
     })
 
 def withdraw_history(self,
@@ -74,12 +74,12 @@ def withdraw_history(self,
     endTime:         int = None,
     offset:          int = None,
     limit:           int = None,
-    recvWindow:      int = None
+    recvWindow:      int = None,
 ) -> dict:
-    ''' Query Withdraw History (USER_DATA)
+    ''' Withdraw History (supporting network)
     GET /openApi/api/v3/capital/withdraw/history
 
-    https://bingx-api.github.io/docs/spot/user-interface.html#query-withdraw-history-user-data
+    https://bingx-api.github.io/docs/spot/user-interface.html#withdraw-history-supporting-network
     '''
     return self.get('/openApi/api/v3/capital/withdraw/history', params={
         'coin':            coin,
@@ -89,5 +89,5 @@ def withdraw_history(self,
         'endTime':         endTime,
         'offset':          offset,
         'limit':           limit,
-        'recvWindow':      recvWindow
+        'recvWindow':      recvWindow,
     })

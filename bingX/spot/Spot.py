@@ -24,7 +24,7 @@ class Spot(API):
         order,
         open_orders,
         order_history,
-        balance,
+        assets,
     )
 
     # ========== MARKET INTERFACE ==========

@@ -10,7 +10,7 @@ def place_order(self,
     quantity:      float = None,
     quoteOrderQty: float = None,
     price:         float = None,
-    recvWindow:    int   = None
+    recvWindow:    int   = None,
 ) -> dict:
     ''' Create an Order
     POST /openApi/spot/v1/trade/order
@@ -25,13 +25,13 @@ def place_order(self,
         'quantity':      quantity,
         'quoteOrderQty': quoteOrderQty,
         'price':         price,
-        'recvWindow':    recvWindow
+        'recvWindow':    recvWindow,
     })
 
 def cancel_order(self,
     symbol:     str,
     orderId:    int,
-    recvWindow: int = None
+    recvWindow: int = None,
 ) -> dict:
     ''' Cancel an Order
     POST /openApi/spot/v1/trade/cancel
@@ -41,13 +41,13 @@ def cancel_order(self,
     return self.post('/openApi/spot/v1/trade/cancel', params={
         'symbol':     symbol,
         'orderId':    orderId,
-        'recvWindow': recvWindow
+        'recvWindow': recvWindow,
     })
 
 def order(self,
     symbol:     str,
     orderId:    int,
-    recvWindow: int = None
+    recvWindow: int = None,
 ) -> dict:
     ''' Query Orders
     GET /openApi/spot/v1/trade/query
@@ -57,12 +57,12 @@ def order(self,
     return self.get('/openApi/spot/v1/trade/query', params={
         'symbol':     symbol,
         'orderId':    orderId,
-        'recvWindow': recvWindow
+        'recvWindow': recvWindow,
     })
 
 def open_orders(self,   
     symbol:     str,
-    recvWindow: int = None
+    recvWindow: int = None,
 ) -> dict:
     ''' Query Open Orders
     GET /openApi/spot/v1/trade/openOrders
@@ -71,7 +71,7 @@ def open_orders(self,
     '''
     return self.get('/openApi/spot/v1/trade/openOrders', params={
         'symbol':     symbol,
-        'recvWindow': recvWindow
+        'recvWindow': recvWindow,
     })
 
 def order_history(self,
@@ -81,7 +81,7 @@ def order_history(self,
     endTime:    int = None,
     pageIndex:  int = None,
     pageSize:   int = None,
-    recvWindow: int = None
+    recvWindow: int = None,
 ) -> dict:
     ''' Query Order History
     GET /openApi/spot/v1/trade/historyOrders
@@ -95,11 +95,11 @@ def order_history(self,
         'endTime':    endTime,
         'pageIndex':  pageIndex,
         'pageSize':   pageSize,
-        'recvWindow': recvWindow
+        'recvWindow': recvWindow,
     })
 
-def balance(self,
-    recvWindow: int = None
+def assets(self,
+    recvWindow: int = None,
 ) -> dict:
     ''' Query Assets
     GET /openApi/spot/v1/trade/assets
@@ -107,5 +107,5 @@ def balance(self,
     https://bingx-api.github.io/docs/spot/trade-interface.html#query-assets
     '''
     return self.get('/openApi/spot/v1/account/balance', params={
-        'recvWindow': recvWindow
+        'recvWindow': recvWindow,
     })
