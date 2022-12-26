@@ -2,7 +2,7 @@
 bingX.spot.Spot
 '''
 
-from  bingX import API
+from bingX import API
 
 class Spot(API):
     def __init__(self,
