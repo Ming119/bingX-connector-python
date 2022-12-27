@@ -1,4 +1,7 @@
-import logging
+'''
+bingX.api
+'''
+
 import time
 import requests
 import hmac
