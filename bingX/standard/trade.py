@@ -2,13 +2,19 @@
 bingX.standard.trade
 '''
 
+from bingX import ClientError
+
 def position(self) -> dict:
     ''' Position
     GET /openApi/contract/v1/allPosition
 
     https://bingx-api.github.io/docs/standard/contract-interface.html#position
     '''
-    return self.get("/openApi/contract/v1/allPosition")
+    res = self.get("/openApi/contract/v1/allPosition")
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
     
 def order_history(self,
     symbol:    str,
@@ -22,7 +28,7 @@ def order_history(self,
 
     https://bingx-api.github.io/docs/standard/contract-interface.html#historical-order
     '''
-    return self.get("/openApi/contract/v1/allOrders", params={
+    res = self.get("/openApi/contract/v1/allOrders", params={
         "symbol":    symbol,
         "orderId":   orderId,
         "startTime": startTime,
@@ -30,10 +36,18 @@ def order_history(self,
         "limit":     limit,
     })
 
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
+
 def balance(self) -> dict:
     ''' Query standard contract balance
     GET /openApi/contract/v1/balance
 
     https://bingx-api.github.io/docs/standard/contract-interface.html#query-standard-contract-balance
     '''
-    return self.get("/openApi/contract/v1/balance")
+    res = self.get("/openApi/contract/v1/balance")
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
