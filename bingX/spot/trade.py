@@ -29,7 +29,7 @@ def place_order(self,
         'price':         price,
         'recvWindow':    recvWindow,
     })
-   
+
     if 'code' in res and res['code']:
         raise ClientError(res['code'], res['msg'])
     return res['data']

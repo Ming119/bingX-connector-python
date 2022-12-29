@@ -17,7 +17,7 @@ def generate_listen_key(self) -> dict:
     return res
 
 def extend_listen_key(self,
-    listenKey: str,    
+    listenKey: str,
 ) -> dict:
     ''' Extend Listen Key
     PUT /api/v1/user/auth/userDataStream

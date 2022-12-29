@@ -15,7 +15,7 @@ def position(self) -> dict:
     if 'code' in res and res['code']:
         raise ClientError(res['code'], res['msg'])
     return res['data']
-    
+
 def order_history(self,
     symbol:    str,
     orderId:   int = None,

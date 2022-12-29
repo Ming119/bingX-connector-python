@@ -41,7 +41,7 @@ def market_depth(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_3-get-market-depth
     '''
-    res =  self.get("/api/v1/market/getMarketDepth", params={
+    res = self.get("/api/v1/market/getMarketDepth", params={
         "symbol": symbol,
         "level":  level,
     })
@@ -58,7 +58,7 @@ def latest_trade(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_4-the-latest-trade-of-a-trading-pair
     '''
-    res =  self.get("/api/v1/market/getMarketTrades", params={
+    res = self.get("/api/v1/market/getMarketTrades", params={
         "symbol": symbol,
     })
 
@@ -74,7 +74,7 @@ def current_funding_rate(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_5-current-funding-rate
     '''
-    res =  self.get("/api/v1/market/getLatestFunding", params={
+    res = self.get("/api/v1/market/getLatestFunding", params={
         "symbol": symbol,
     })
 
@@ -90,7 +90,7 @@ def funding_rate_history(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_6-funding-rate-history
     '''
-    res =  self.get("/api/v1/market/getHistoryFunding", params={
+    res = self.get("/api/v1/market/getHistoryFunding", params={
         "symbol": symbol,
     })
 
@@ -107,7 +107,7 @@ def kline_data(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_7-get-k-line-data
     '''
-    res =  self.get("/api/v1/market/getLatestKline", params={
+    res = self.get("/api/v1/market/getLatestKline", params={
         "symbol":    symbol,
         "klineType": klineType,
     })
@@ -127,7 +127,7 @@ def kline_data_history(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_8-k-line-data-history
     '''
-    res =  self.get("/api/v1/market/getHistoryKlines", params={
+    res = self.get("/api/v1/market/getHistoryKlines", params={
         "symbol":    symbol,
         "klineType": klineType,
         "startTs":   startTs,
@@ -146,7 +146,7 @@ def open_positions(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_9-get-swap-open-positions
     '''
-    res =  self.get("/api/v1/market/getOpenPositions", params={
+    res = self.get("/api/v1/market/getOpenPositions", params={
         "symbol": symbol,
     })
 

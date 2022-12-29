@@ -44,7 +44,7 @@ def depth(self,
 ) -> dict:
     ''' Query depth information
     GET /openApi/spot/v1/market/depth
-    
+
     https://bingx-api.github.io/docs/spot/market-interface.html#query-depth-information
     '''
     res = self.get('/openApi/spot/v1/market/depth', params={
