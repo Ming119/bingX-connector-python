@@ -2,13 +2,19 @@
 bingX.spot.other
 '''
 
+from bingX import ClientError
+
 def generate_listen_key(self):
     ''' Generate Listen Key
     POST /openApi/user/auth/userDataStream
 
     https://bingx-api.github.io/docs/spot/other-interface.html#generate-listen-key
     '''
-    return self.post('/openApi/user/auth/userDataStream')
+    res = self.post('/openApi/user/auth/userDataStream')
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res
 
 def extend_listen_key(self,
     listenKey: str,
@@ -18,9 +24,13 @@ def extend_listen_key(self,
 
     https://bingx-api.github.io/docs/spot/other-interface.html#extend-listen-key-validity-period
     '''
-    return self.put('/openApi/user/auth/userDataStream', params={
+    res = self.put('/openApi/user/auth/userDataStream', params={
         'listenKey': listenKey,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res
 
 def delete_listen_key(self,
     listenKey: str,
@@ -30,6 +40,10 @@ def delete_listen_key(self,
 
     https://bingx-api.github.io/docs/spot/other-interface.html#delete-listen-key
     '''
-    return self.delete('/openApi/user/auth/userDataStream', params={
+    res = self.delete('/openApi/user/auth/userDataStream', params={
         'listenKey': listenKey,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res

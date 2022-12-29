@@ -2,6 +2,8 @@
 bingX.spot.transfer
 '''
 
+from bingX import ClientError
+
 def transfer(self, 
     type:       str,
     asset:      str   = None,
@@ -13,12 +15,16 @@ def transfer(self,
 
     https://bingx-api.github.io/docs/spot/user-interface.html#user-universal-transfer
     '''
-    return self.post('/openApi/api/v3/asset/transfer', params={
+    res = self.post('/openApi/api/v3/asset/transfer', params={
         'type':       type,
         'asset':      asset,
         'amount':     amount,
         'recvWindow': recvWindow,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res
 
 def transfer_history(self,
     type:       str,
@@ -33,7 +39,7 @@ def transfer_history(self,
 
     https://bingx-api.github.io/docs/spot/user-interface.html#query-user-universal-transfer-history-user-data
     '''
-    return self.get('/openApi/api/v3/asset/transfer', params={
+    res = self.get('/openApi/api/v3/asset/transfer', params={
         'type':       type,
         'startTime':  startTime,
         'endTime':    endTime,
@@ -41,6 +47,10 @@ def transfer_history(self,
         'size':       size,
         'recvWindow': recvWindow,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res
 
 def deposit_history(self,
     coin:       str = None,
@@ -56,7 +66,7 @@ def deposit_history(self,
 
     https://bingx-api.github.io/docs/spot/user-interface.html#deposit-history-supporting-network
     '''
-    return self.get('/openApi/api/v3/capital/deposit/hisrec', params={
+    res = self.get('/openApi/api/v3/capital/deposit/hisrec', params={
         'coin':       coin,
         'status':     status,
         'startTime':  startTime,
@@ -65,6 +75,10 @@ def deposit_history(self,
         'limit':      limit,
         'recvWindow': recvWindow,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res
 
 def withdraw_history(self,
     coin:            str = None,
@@ -81,7 +95,7 @@ def withdraw_history(self,
 
     https://bingx-api.github.io/docs/spot/user-interface.html#withdraw-history-supporting-network
     '''
-    return self.get('/openApi/api/v3/capital/withdraw/history', params={
+    res = self.get('/openApi/api/v3/capital/withdraw/history', params={
         'coin':            coin,
         'withdrawOrderId': withdrawOrderId,
         'status':          status,
@@ -91,3 +105,7 @@ def withdraw_history(self,
         'limit':           limit,
         'recvWindow':      recvWindow,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res

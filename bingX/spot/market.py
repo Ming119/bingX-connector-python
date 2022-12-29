@@ -2,6 +2,8 @@
 bingX.spot.market
 '''
 
+from bingX import ClientError
+
 def symbols(self,
     symbol: str = None,
 ) -> dict:
@@ -10,9 +12,13 @@ def symbols(self,
 
     https://bingx-api.github.io/docs/spot/market-interface.html#query-symbols
     '''
-    return self.get('/openApi/spot/v1/common/symbols', params={
+    res = self.get('/openApi/spot/v1/common/symbols', params={
         'symbol': symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def trades(self,
     symbol: str,
@@ -23,10 +29,14 @@ def trades(self,
 
     https://bingx-api.github.io/docs/spot/market-interface.html#query-transaction-records
     '''
-    return self.get('/openApi/spot/v1/market/trades', params={
+    res = self.get('/openApi/spot/v1/market/trades', params={
         'symbol': symbol,
         'limit':  limit,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def depth(self,
     symbol: str,
@@ -37,7 +47,11 @@ def depth(self,
     
     https://bingx-api.github.io/docs/spot/market-interface.html#query-depth-information
     '''
-    return self.get('/openApi/spot/v1/market/depth', params={
+    res = self.get('/openApi/spot/v1/market/depth', params={
         'symbol': symbol,
         'limit':  limit,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
