@@ -2,6 +2,8 @@
 bingX.spot.trade
 '''
 
+from bingX import ClientError
+
 def place_order(self,
     symbol:        str,
     side:          str,
@@ -17,7 +19,7 @@ def place_order(self,
 
     https://bingx-api.github.io/docs/spot/trade-interface.html#create-an-order
     '''
-    return self.post('/openApi/spot/v1/trade/order', params={
+    res = self.post('/openApi/spot/v1/trade/order', params={
         'symbol':        symbol,
         'side':          side,  
         'type':          type,
@@ -27,6 +29,10 @@ def place_order(self,
         'price':         price,
         'recvWindow':    recvWindow,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def cancel_order(self,
     symbol:     str,
@@ -38,11 +44,15 @@ def cancel_order(self,
 
     https://bingx-api.github.io/docs/spot/trade-interface.html#cancel-an-order
     '''
-    return self.post('/openApi/spot/v1/trade/cancel', params={
+    res = self.post('/openApi/spot/v1/trade/cancel', params={
         'symbol':     symbol,
         'orderId':    orderId,
         'recvWindow': recvWindow,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def order(self,
     symbol:     str,
@@ -54,11 +64,15 @@ def order(self,
 
     https://bingx-api.github.io/docs/spot/trade-interface.html#query-orders
     '''
-    return self.get('/openApi/spot/v1/trade/query', params={
+    res = self.get('/openApi/spot/v1/trade/query', params={
         'symbol':     symbol,
         'orderId':    orderId,
         'recvWindow': recvWindow,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def open_orders(self,   
     symbol:     str,
@@ -69,10 +83,14 @@ def open_orders(self,
 
     https://bingx-api.github.io/docs/spot/trade-interface.html#query-open-orders
     '''
-    return self.get('/openApi/spot/v1/trade/openOrders', params={
+    res = self.get('/openApi/spot/v1/trade/openOrders', params={
         'symbol':     symbol,
         'recvWindow': recvWindow,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def order_history(self,
     symbol:     str,
@@ -88,7 +106,7 @@ def order_history(self,
 
     https://bingx-api.github.io/docs/spot/trade-interface.html#query-order-history
     '''
-    return self.get('/openApi/spot/v1/trade/historyOrders', params={
+    res = self.get('/openApi/spot/v1/trade/historyOrders', params={
         'symbol':     symbol,
         'orderId':    orderId,
         'startTime':  startTime,
@@ -98,6 +116,10 @@ def order_history(self,
         'recvWindow': recvWindow,
     })
 
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
+
 def assets(self,
     recvWindow: int = None,
 ) -> dict:
@@ -106,6 +128,10 @@ def assets(self,
 
     https://bingx-api.github.io/docs/spot/trade-interface.html#query-assets
     '''
-    return self.get('/openApi/spot/v1/account/balance', params={
+    res = self.get('/openApi/spot/v1/account/balance', params={
         'recvWindow': recvWindow,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']

@@ -2,6 +2,8 @@
 bingX.perpetual.account
 '''
 
+from bingX import ClientError
+
 def balance(self,
     currency: str,
 ) -> dict:
@@ -10,9 +12,13 @@ def balance(self,
 
     https://bingx-api.github.io/docs/swap/account-api.html#_1-get-perpetual-swap-account-asset-information
     '''
-    return self.post("/api/v1/user/getBalance", params={
+    res = self.post("/api/v1/user/getBalance", params={
         "currency": currency,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def positions(self,
     symbol: str,
@@ -22,6 +28,10 @@ def positions(self,
 
     https://bingx-api.github.io/docs/swap/account-api.html#_2-perpetual-swap-positions
     '''
-    return self.post("/api/v1/user/getPositions", params={
+    res = self.post("/api/v1/user/getPositions", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']

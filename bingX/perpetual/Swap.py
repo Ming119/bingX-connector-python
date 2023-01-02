@@ -16,13 +16,13 @@ class Swap(API):
             base_url   = base_url or "https://api-swap-rest.bingbon.pro",
             api_type   = "swap"
         )
-    
+
     def server_time(self) -> dict:
         ''' Get Server Time
         https://bingx-api.github.io/docs/swap/base-info.html#get-server-time
         '''
         return self.get("/api/v1/common/server/time")
-    
+
     # ========== MARKET INTERFACE ==========
     from bingX.perpetual.market import (
         contracts,
@@ -42,7 +42,7 @@ class Swap(API):
         balance,
         positions,
     )
-    
+
     # ========== TRADE INTERFACE ==========
     from bingX.perpetual.trade import (
         place_order,

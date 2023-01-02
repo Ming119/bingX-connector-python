@@ -21,4 +21,5 @@ class Standard(API):
     from bingX.standard.trade import (
         position,
         order_history,
+        balance,
     )

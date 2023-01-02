@@ -2,13 +2,19 @@
 bingX.perpetual.market
 '''
 
+from bingX import ClientError
+
 def contracts(self) -> dict:
     ''' Contract Information
     GET /api/v1/market/getAllContracts
 
     https://bingx-api.github.io/docs/swap/market-api.html#_1-contract-information
     '''
-    return self.get("/api/v1/market/getAllContracts")
+    res = self.get("/api/v1/market/getAllContracts")
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def latest_price(self,
     symbol: str,
@@ -18,9 +24,13 @@ def latest_price(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_2-get-latest-price-of-a-trading-pair
     '''
-    return self.get("/api/v1/market/getLatestPrice", params={
+    res = self.get("/api/v1/market/getLatestPrice", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def market_depth(self,
     symbol: str,
@@ -31,10 +41,14 @@ def market_depth(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_3-get-market-depth
     '''
-    return self.get("/api/v1/market/getMarketDepth", params={
+    res = self.get("/api/v1/market/getMarketDepth", params={
         "symbol": symbol,
         "level":  level,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def latest_trade(self,
     symbol: str,
@@ -44,9 +58,13 @@ def latest_trade(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_4-the-latest-trade-of-a-trading-pair
     '''
-    return self.get("/api/v1/market/getMarketTrades", params={
+    res = self.get("/api/v1/market/getMarketTrades", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def current_funding_rate(self,
     symbol: str,
@@ -56,9 +74,13 @@ def current_funding_rate(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_5-current-funding-rate
     '''
-    return self.get("/api/v1/market/getLatestFunding", params={
+    res = self.get("/api/v1/market/getLatestFunding", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def funding_rate_history(self,
     symbol: str,
@@ -68,9 +90,13 @@ def funding_rate_history(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_6-funding-rate-history
     '''
-    return self.get("/api/v1/market/getHistoryFunding", params={
+    res = self.get("/api/v1/market/getHistoryFunding", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def kline_data(self,
     symbol:    str,
@@ -81,10 +107,14 @@ def kline_data(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_7-get-k-line-data
     '''
-    return self.get("/api/v1/market/getLatestKline", params={
+    res = self.get("/api/v1/market/getLatestKline", params={
         "symbol":    symbol,
         "klineType": klineType,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def kline_data_history(self,
     symbol:    str,
@@ -97,12 +127,16 @@ def kline_data_history(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_8-k-line-data-history
     '''
-    return self.get("/api/v1/market/getHistoryKlines", params={
+    res = self.get("/api/v1/market/getHistoryKlines", params={
         "symbol":    symbol,
         "klineType": klineType,
         "startTs":   startTs,
         "endTs":     endTs,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def open_positions(self,
     symbol: str,
@@ -112,9 +146,13 @@ def open_positions(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_9-get-swap-open-positions
     '''
-    return self.get("/api/v1/market/getOpenPositions", params={
+    res = self.get("/api/v1/market/getOpenPositions", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def ticker(self,
     symbol: str = None,
@@ -124,6 +162,10 @@ def ticker(self,
 
     https://bingx-api.github.io/docs/swap/market-api.html#_10-get-ticker
     '''
-    return self.get("/api/v1/market/getTicker", params={
+    res = self.get("/api/v1/market/getTicker", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']

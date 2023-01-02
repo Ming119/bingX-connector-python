@@ -16,7 +16,7 @@ class Spot(API):
             base_url   = base_url or 'https://open-api.bingx.com',
             api_type   = 'spot'
         )
-    
+
     # ========== TRADE INTERFACE ==========
     from bingX.spot.trade import (
         place_order,

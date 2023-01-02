@@ -2,6 +2,8 @@
 bingX.perpetual.trade
 '''
 
+from bingX import ClientError
+
 def place_order(self,
     symbol:           str,
     side:             str,
@@ -17,7 +19,7 @@ def place_order(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_1-place-a-new-order
     '''
-    return self.post("/api/v1/user/trade", params={
+    res = self.post("/api/v1/user/trade", params={
         "symbol":           symbol,
         "side":             side,
         "entrustPrice":     entrustPrice,
@@ -28,6 +30,10 @@ def place_order(self,
         "stopLossPrice":    stopLossPrice,
     })
 
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
+
 def close_position(self,
     symbol:     str,
     positionId: str,
@@ -37,10 +43,14 @@ def close_position(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_2-one-click-close-position
     '''
-    return self.post("/api/v1/user/oneClickClosePosition", params={
+    res = self.post("/api/v1/user/oneClickClosePosition", params={
         "symbol":     symbol,
         "positionId": positionId,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def close_all_positions(self) -> dict:
     ''' One-Click Close All Positions
@@ -48,7 +58,11 @@ def close_all_positions(self) -> dict:
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_3-one-click-close-all-positions
     '''
-    return self.post("/api/v1/user/oneClickCloseAllPositions")
+    res = self.post("/api/v1/user/oneClickCloseAllPositions")
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def cancel_order(self,
     symbol:  str,
@@ -57,10 +71,14 @@ def cancel_order(self,
     ''' Cancel an Order
     https://bingx-api.github.io/docs/swap/trade-api.html#_4-cancel-an-order
     '''
-    return self.post("/api/v1/user/cancelOrder", params={
+    res = self.post("/api/v1/user/cancelOrder", params={
         "symbol":  symbol,
         "orderId": orderId,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def cancel_orders(self,
     symbol:   str,
@@ -71,10 +89,14 @@ def cancel_orders(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_5-cancel-a-batch-of-orders
     '''
-    return self.post("/api/v1/user/batchCancelOrders", params={
+    res = self.post("/api/v1/user/batchCancelOrders", params={
         "symbol": symbol,
         "oids":   orderIds,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def cancel_all_orders(self) -> dict:
     ''' Cancel All Orders
@@ -82,7 +104,11 @@ def cancel_all_orders(self) -> dict:
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_6-cancel-all-orders
     '''
-    return self.post("/api/v1/user/cancelAll")
+    res = self.post("/api/v1/user/cancelAll")
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def unfilled_order_acquisition(self,
     symbol: str,
@@ -92,9 +118,13 @@ def unfilled_order_acquisition(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_7-unfilled-order-acquisition
     '''
-    return self.post("/api/v1/user/pendingOrders", params={
+    res = self.post("/api/v1/user/pendingOrders", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def order_details(self,
     symbol:  str,
@@ -105,10 +135,14 @@ def order_details(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_8-query-order-details
     '''
-    return self.post("/api/v1/user/orderInfo", params={
+    res = self.post("/api/v1/user/orderInfo", params={
         "symbol":  symbol,
         "orderId": orderId,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def margin_mode(self,
     symbol: str,
@@ -118,9 +152,13 @@ def margin_mode(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_9-query-margin-mode
     '''
-    return self.post("/api/v1/user/getMarginMode", params={
+    res = self.post("/api/v1/user/getMarginMode", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def switch_margin_mode(self,
     symbol:     str,
@@ -131,10 +169,14 @@ def switch_margin_mode(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_10-switch-margin-mode
     '''
-    return self.post("/api/v1/user/setMarginMode", params={
+    res = self.post("/api/v1/user/setMarginMode", params={
         "symbol":     symbol,
         "marginMode": marginMode,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def leverage(self,
     symbol: str,
@@ -144,9 +186,13 @@ def leverage(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_11-query-leverage
     '''
-    return self.post("/api/v1/user/getLeverage", params={
+    res = self.post("/api/v1/user/getLeverage", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def switch_leverage(self,
     symbol:   str,
@@ -158,11 +204,15 @@ def switch_leverage(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_12-switch-leverage
     '''
-    return self.post("/api/v1/user/setLeverage", params={
+    res = self.post("/api/v1/user/setLeverage", params={
         "symbol":   symbol,
         "side":     side,
         "leverage": leverage,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def force_orders(self,
     symbol:        str,
@@ -175,12 +225,16 @@ def force_orders(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_13-user-s-force-orders
     '''
-    return self.post("/api/v1/user/forceOrders", params={
+    res = self.post("/api/v1/user/forceOrders", params={
         "symbol":        symbol,
         "autoCloseType": autoCloseType,
         "lastOrderId":   lastOrderId,
         "length":        length,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def orders_history(self,
     symbol:      str,
@@ -192,11 +246,15 @@ def orders_history(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_14-user-s-history-orders
     '''
-    return self.post("/api/v1/user/historyOrders", params={
+    res = self.post("/api/v1/user/historyOrders", params={
         "symbol":      symbol,
         "lastOrderId": lastOrderId,
         "length":      length,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def place_a_stop_order(self,
     positionId:      str,
@@ -210,13 +268,17 @@ def place_a_stop_order(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_15-place-a-stop-order
     '''
-    return self.post("/api/v1/user/stopOrder", params={
+    res = self.post("/api/v1/user/stopOrder", params={
         "positionId":      positionId,
         "orderId":         orderId,
         "stopLossPrice":   stopLossPrice,
         "takeProfitPrice": takeProfitPrice,
         "entrustVolume":   entrustVolume,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def cancel_stop_order(self,
     orderId: str,
@@ -226,9 +288,13 @@ def cancel_stop_order(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_16-cancel-stop-order
     '''
-    return self.post("/api/v1/user/cancelStopOrder", params={
+    res = self.post("/api/v1/user/cancelStopOrder", params={
         "orderId": orderId,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def stop_orders(self,
     symbol: str,
@@ -238,9 +304,13 @@ def stop_orders(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_17-query-stop-orders
     '''
-    return self.post("/api/v1/user/pendingStopOrders", params={
+    res = self.post("/api/v1/user/pendingStopOrders", params={
         "symbol": symbol,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
 
 def stop_orders_history(self,
     symbol:      str,
@@ -252,8 +322,12 @@ def stop_orders_history(self,
 
     https://bingx-api.github.io/docs/swap/trade-api.html#_18-query-history-stop-orders
     '''
-    return self.post("/api/v1/user/historyStopOrders", params={
+    res = self.post("/api/v1/user/historyStopOrders", params={
         "symbol":      symbol,
         "lastOrderId": lastOrderId,
         "length":      length,
     })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
