@@ -2,6 +2,8 @@
 bingX.perpetual.trade
 '''
 
+from typing import List
+
 from bingX import ClientError
 
 def place_order(self,
@@ -82,7 +84,7 @@ def cancel_order(self,
 
 def cancel_orders(self,
     symbol:   str,
-    orderIds: list[str],
+    orderIds: List[str],
 ) -> dict:
     ''' Cancel Multiple Orders
     POST /api/v1/user/batchCancelOrders
