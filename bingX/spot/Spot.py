@@ -14,7 +14,6 @@ class Spot(API):
             api_key    = api_key,
             api_secret = api_secret,
             base_url   = base_url or 'https://open-api.bingx.com',
-            api_type   = 'spot'
         )
 
     # ========== TRADE INTERFACE ==========

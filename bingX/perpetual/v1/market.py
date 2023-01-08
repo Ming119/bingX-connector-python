@@ -1,5 +1,5 @@
 '''
-bingX.perpetual.market
+bingX.perpetual.v1.market
 '''
 
 from bingX import ClientError

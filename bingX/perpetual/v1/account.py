@@ -1,5 +1,5 @@
 '''
-bingX.perpetual.account
+bingX.perpetual.v1.account
 '''
 
 from bingX import ClientError
