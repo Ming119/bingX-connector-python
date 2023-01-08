@@ -2,4 +2,4 @@
 bingX.perpetual.__init__
 '''
 
-from bingX.perpetual.Swap import Swap
+from bingX.perpetual.Perpetual import Perpetual
