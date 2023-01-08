@@ -1,5 +1,5 @@
 '''
-bingX.perpetual.trade
+bingX.perpetual.v1.trade
 '''
 
 from typing import List

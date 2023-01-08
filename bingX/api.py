@@ -9,7 +9,7 @@ import urllib
 import base64
 
 class API(object):
-    def __init__(self, api_key: str, api_secret: str, base_url: str, api_type: str):
+    def __init__(self, api_key: str, api_secret: str, base_url: str, api_type: str=None):
         self.api_key    = api_key
         self.api_secret = api_secret
         self.base_url   = base_url
@@ -24,7 +24,7 @@ class API(object):
     def _handle_params(self, params, path=None, method=None):
         params = params or {}
         params['timestamp'] = round(time.time() * 1000)
-        if self.api_type == 'swap':
+        if self.api_type == 'perpetual_v1':
             params['apiKey'] = self.api_key
             params = '&'.join(f'{k}={params[k]}' for k in sorted(params) if params[k])
         else:
@@ -33,7 +33,7 @@ class API(object):
         return params
 
     def _signature(self, params, path=None, method=None):
-        if self.api_type != 'swap':
+        if self.api_type != 'perpetual_v1':
             sign = hmac.new(self.api_secret.encode(), params.encode(), 'sha256')
             return f'&signature={sign.hexdigest()}'
         originString = f'{method}{path}{params}'

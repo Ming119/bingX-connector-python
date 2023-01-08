@@ -1,5 +1,5 @@
 '''
-bingX.perpetual.other
+bingX.perpetual.v1.other
 '''
 
 from bingX import ClientError

@@ -1,5 +1,5 @@
 '''
-bingX.perpetual.Perpetual
+bingX.perpetual.v1.Perpetual
 '''
 
 from bingX import API
@@ -14,7 +14,7 @@ class Perpetual(API):
             api_key    = api_key,
             api_secret = api_secret,
             base_url   = base_url or "https://api-swap-rest.bingbon.pro",
-            api_type   = "swap"
+            api_type   = "perpetual_v1"
         )
 
     def server_time(self) -> dict:
@@ -24,7 +24,7 @@ class Perpetual(API):
         return self.get("/api/v1/common/server/time")
 
     # ========== MARKET INTERFACE ==========
-    from bingX.perpetual.market import (
+    from bingX.perpetual.v1.market import (
         contracts,
         latest_price,
         market_depth,
@@ -38,13 +38,13 @@ class Perpetual(API):
     )
 
     # ========== ACCOUNT INTERFACE ==========
-    from bingX.perpetual.account import (
+    from bingX.perpetual.v1.account import (
         balance,
         positions,
     )
 
     # ========== TRADE INTERFACE ==========
-    from bingX.perpetual.trade import (
+    from bingX.perpetual.v1.trade import (
         place_order,
         close_position,
         close_all_positions,
@@ -66,7 +66,7 @@ class Perpetual(API):
     )
 
     # ========== OTHER INTERFACE ==========
-    from bingX.perpetual.other import (
+    from bingX.perpetual.v1.other import (
         generate_listen_key,
         extend_listen_key,
         delete_listen_key,

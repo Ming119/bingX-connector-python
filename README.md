@@ -27,12 +27,21 @@ from bingX.spot import Spot
 client = Spot(api_key, api_secret)
 ```
 
-### Perpetual Swap
+### Perpetual v1
 ```python
-from bingX.perpetual import Swap
+from bingX.perpetual.v1 import Perpetual
 
-client = Swap(api_key, api_secret)
+client = Perpetual(api_key, api_secret)
 ```
+
+### Perpetual v2
+```python
+from bingX.perpetual.v2 import Perpetual
+
+client = Perpetual(api_key, api_secret)
+```
+
+> Note that you can not import `Perpetual v1` and `Perpetual v2` at the same time
 
 [pypi-shield]: https://img.shields.io/pypi/v/bingX-connector
 [pypi-url]: https://pypi.org/project/bingX-connector/
