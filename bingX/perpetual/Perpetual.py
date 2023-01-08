@@ -1,10 +1,10 @@
 '''
-bingX.perpetual.Swap
+bingX.perpetual.Perpetual
 '''
 
 from bingX import API
 
-class Swap(API):
+class Perpetual(API):
     def __init__(self,
         api_key:    str,
         api_secret: str,

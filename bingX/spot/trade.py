@@ -124,7 +124,7 @@ def assets(self,
     recvWindow: int = None,
 ) -> dict:
     ''' Query Assets
-    GET /openApi/spot/v1/trade/assets
+    GET /openApi/spot/v1/account/balance
 
     https://bingx-api.github.io/docs/spot/trade-interface.html#query-assets
     '''
