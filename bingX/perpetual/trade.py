@@ -3,7 +3,6 @@ bingX.perpetual.trade
 '''
 
 from typing import List
-
 from bingX import ClientError
 
 def place_order(self,
