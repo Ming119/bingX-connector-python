@@ -1,6 +1,17 @@
-__pycache__
-config.py
-setup.py
 *.egg-info
 build
 dist
+
+# Cache
+__pycache__
+
+# Configg
+config.py
+
+# Environments
+.env
+.venv
+venv
+
+# IDE
+.vscode
