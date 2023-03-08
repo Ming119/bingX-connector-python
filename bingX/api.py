@@ -33,7 +33,7 @@ class API(object):
         return params
 
     def _signature(self, params, path=None, method=None):
-        if self.api_type != 'perpetual_v1':
+        if self.api_type is not None and 'perpetual' in self.api_type:
             sign = hmac.new(self.api_secret.encode(), params.encode(), 'sha256')
             return f'&signature={sign.hexdigest()}'
         originString = f'{method}{path}{params}'
