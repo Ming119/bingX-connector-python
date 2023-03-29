@@ -8,12 +8,11 @@ class Perpetual(API):
     def __init__(self,
         api_key:    str,
         api_secret: str,
-        base_url :  str = None
     ) -> object:
         super().__init__(
             api_key    = api_key,
             api_secret = api_secret,
-            base_url   = base_url or "https://api-swap-rest.bingbon.pro",
+            base_url   = "https://api-swap-rest.bingbon.pro",
             api_type   = "perpetual_v1"
         )
 

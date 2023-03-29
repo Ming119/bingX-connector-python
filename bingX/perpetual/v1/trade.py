@@ -213,7 +213,7 @@ def switch_leverage(self,
 
     if 'code' in res and res['code']:
         raise ClientError(res['code'], res['msg'])
-    return res['data']
+    return res
 
 def force_orders(self,
     symbol:        str,

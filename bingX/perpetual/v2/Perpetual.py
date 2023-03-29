@@ -8,12 +8,11 @@ class Perpetual(API):
     def __init__(self,
         api_key:    str,
         api_secret: str,
-        base_url :  str = None
     ) -> object:
         super().__init__(
             api_key    = api_key,
             api_secret = api_secret,
-            base_url   = base_url or "https://open-api.bingx.com",
+            base_url   = "https://open-api.bingx.com",
         )
 
     def server_time(self) -> dict:
@@ -39,6 +38,7 @@ class Perpetual(API):
     from bingX.perpetual.v2.account import (
         balance,
         positions,
+        income,
     )
 
     # ========== TRADE INTERFACE ==========

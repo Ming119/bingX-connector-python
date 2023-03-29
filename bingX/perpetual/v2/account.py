@@ -37,3 +37,29 @@ def positions(self,
     if 'code' in res and res['code']:
         raise ClientError(res['code'], res['msg'])
     return res['data']
+
+def income(self,
+    symbol: str = None,
+    incomeType: str = None,
+    startTime: int = None,
+    endTime: int = None,
+    limit: int = None,
+    recvWindow: int = None,
+) -> dict:
+    ''' Perpetual Swap Account PnL
+    GET /openApi/swap/v2/user/income
+
+    https://bingx-api.github.io/docs/swapV2/account-api.html#_3-get-account-profit-and-loss-fund-flow
+    '''
+    res = self.get("/openApi/swap/v2/user/income", params={
+        "symbol": symbol,
+        "incomeType": incomeType,
+        "startTime": startTime,
+        "endTime": endTime,
+        "limit": limit,
+        "recvWindow": recvWindow,
+    })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']

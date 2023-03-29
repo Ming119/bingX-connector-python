@@ -16,8 +16,6 @@ class API(object):
         self.api_type   = api_type
 
         self.headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
             'X-BX-APIKEY': self.api_key,
         }
 
