@@ -14,6 +14,7 @@ def trade_order(self,
     quantity:     float = None,
     stopPrice:    float = None,
     recvWindow:   int   = None,
+    reduceOnly:   bool = None,
 ) -> dict:
     ''' Place a New Order
     POST /openApi/swap/v2/trade/order
@@ -29,6 +30,39 @@ def trade_order(self,
         "quantity":     quantity,
         "stopPrice":    stopPrice,
         "recvWindow":   recvWindow,
+        "reduceOnly":   reduceOnly
+    })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
+
+def trade_order_test(self,
+    symbol:       str,
+    type:         str,
+    side:         str,
+    positionSide: str   = None,
+    price:        float = None,
+    quantity:     float = None,
+    stopPrice:    float = None,
+    recvWindow:   int   = None,
+    reduceOnly:   bool = None,
+) -> dict:
+    ''' Place a New Order
+    POST /openApi/swap/v2/trade/order/test
+
+    https://bingx-api.github.io/docs/swapV2/trade-api.html#_1-trade-order
+    '''
+    res = self.post("/openApi/swap/v2/trade/order/test", params={
+        "symbol":       symbol,
+        "type":         type,
+        "side":         side,
+        "positionSide": positionSide,
+        "price":        price,
+        "quantity":     quantity,
+        "stopPrice":    stopPrice,
+        "recvWindow":   recvWindow,
+        "reduceOnly":   reduceOnly
     })
 
     if 'code' in res and res['code']:
