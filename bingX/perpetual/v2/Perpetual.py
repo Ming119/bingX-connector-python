@@ -4,15 +4,16 @@ bingX.perpetual.v2.Perpetual
 
 from bingX import API
 
+
 class Perpetual(API):
     def __init__(self,
-        api_key:    str,
-        api_secret: str,
-    ) -> object:
+                 api_key: str,
+                 api_secret: str,
+                 ) -> object:
         super().__init__(
-            api_key    = api_key,
-            api_secret = api_secret,
-            base_url   = "https://open-api.bingx.com",
+            api_key=api_key,
+            api_secret=api_secret,
+            base_url="https://open-api.bingx.com",
         )
 
     def server_time(self) -> dict:
@@ -58,4 +59,10 @@ class Perpetual(API):
         force_orders,
         orders_history,
         adjust_isolated_margin,
+    )
+    # ========== LISTEN KEY ==========
+    from bingX.perpetual.v2.other import (
+        generate_listen_key,
+        extend_listen_key,
+        delete_listen_key
     )
