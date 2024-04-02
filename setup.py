@@ -3,10 +3,10 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-NAME = "bingX-connector"
+NAME = "bingX-connector2"
 VERSION = "0.0.5"
 AUTHOR = "Ming119"
-URL = "https://github.com/Ming119/bingX-connector-python"
+URL = "https://github.com/demonarch/bingX-connector-python"
 
 setuptools.setup(
     name=NAME,
