@@ -43,6 +43,43 @@ def trade_order(self,
     return res['data']
 
 
+def trade_order(self,
+                symbol: str,
+                type: str,
+                side: str,
+                positionSide: str = None,
+                price: float = None,
+                quantity: float = None,
+                stopPrice: float = None,
+                recvWindow: int = None,
+                reduceOnly: str = None,
+                clientOrderID: str = None,
+                closePosition: str = None,
+                ) -> dict:
+    ''' Place a New Order
+    POST /openApi/swap/v2/trade/order
+
+    https://bingx-api.github.io/docs/swapV2/trade-api.html#_1-trade-order-test
+    '''
+    res = self.post("/openApi/swap/v2/trade/order/test", params={
+        "symbol": symbol,
+        "type": type,
+        "side": side,
+        "positionSide": positionSide,
+        "price": price,
+        "quantity": quantity,
+        "stopPrice": stopPrice,
+        "recvWindow": recvWindow,
+        "reduceOnly": reduceOnly,
+        "clientOrderID": clientOrderID,
+        "closePosition": closePosition,
+    })
+
+    if 'code' in res and res['code']:
+        raise ClientError(res['code'], res['msg'])
+    return res['data']
+
+
 def bulk_order(self,
                batchOrders: List,
                recvWindow: int = None,
